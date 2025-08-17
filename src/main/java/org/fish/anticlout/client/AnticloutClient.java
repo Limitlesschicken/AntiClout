@@ -33,24 +33,23 @@ public class AnticloutClient implements ClientModInitializer {
 
     public static boolean isChaserClose = false;
 
+    public static ArrayList<UUID> uuids = new ArrayList<>();
+
     @Override
     public void onInitializeClient() {
-        mc = Minecraft.getInstance();
         getUUIDS();
+        mc = Minecraft.getInstance();
+
     }
 
-
-
-
-    public static ArrayList<UUID> getUUIDS()
+    public static void getUUIDS()
     {
-        ArrayList<UUID> uuidList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(AnticloutClient.class.getResourceAsStream("/assets/anticlout/uuids.txt")));
         try {
             String line = reader.readLine();
 
             while (line != null) {
-                uuidList.add(UUID.fromString(line));
+                uuids.add(UUID.fromString(line));
                 line = reader.readLine();
 
             }
@@ -58,6 +57,5 @@ public class AnticloutClient implements ClientModInitializer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return uuidList;
     }
 }

@@ -26,7 +26,7 @@ public abstract class AbstractClientPlayerMixin {
     {
         if (mc.isLocalServer()) return original;
         PlayerInfo info = this.playerInfo;
-        for (UUID uuid : AnticloutClient.getUUIDS()) {
+        for (UUID uuid : AnticloutClient.uuids) {
             if (info == null) return original;
             if (uuid.equals(info.getProfile().getId()))
                 return new PlayerSkin(AnticloutClient.resources("textures/skin.png"), original.textureUrl(), original.capeTexture(), original.elytraTexture(), original.model(), original.secure());

@@ -31,9 +31,9 @@ public class PlayerMixin {
                 continue;
             }
 
-            for (UUID uuid : AnticloutClient.getUUIDS())
+            for (UUID uuid : AnticloutClient.uuids)
                 if (uuid.equals(this.gameProfile.getId())) {
-                    if (player.position().closerThan(mc.player.position(), 5)) {
+                    if (player.position().closerThan(mc.player.position(), 30)) {
                         AnticloutClient.isChaserClose = true;
                         break;
                     }
@@ -42,7 +42,7 @@ public class PlayerMixin {
             AnticloutClient.isChaserClose = false;
         }
 
-        for (UUID uuid : AnticloutClient.getUUIDS())
+        for (UUID uuid : AnticloutClient.uuids)
             if (uuid.equals(this.gameProfile.getId()))
                 return Component.literal("lil pup");
 
