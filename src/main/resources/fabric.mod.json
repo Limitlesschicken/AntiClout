@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "anticlout",
+  "version": "${version}",
+  "name": "AntiClout",
+  "description": "removes peoples clout automatically :0",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/anticlout/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "org.fish.anticlout.client.AnticloutClient"
+    ],
+    "main": [
+      "org.fish.anticlout.Anticlout"
+    ]
+  },
+  "mixins": [
+    "anticlout.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
