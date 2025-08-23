@@ -4,11 +4,13 @@
   "package": "org.fish.anticlout.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "PlayerMixin",
+    "ConnectionMixin",
+    "PlayerMixin"
   ],
   "client": [
     "AbstractClientPlayerMixin",
-    "MapRendererMixin"
+    "MapRendererMixin",
+    "PauseScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

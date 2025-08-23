@@ -5,6 +5,7 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import org.fish.anticlout.client.AntiCloutScreen;
 import org.fish.anticlout.client.AnticloutClient;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,27 +25,28 @@ public class PlayerMixin {
 
     @ModifyReturnValue(method = "getName", at = @At("RETURN"))
     public Component getName(Component original) {
-        if (mc.isLocalServer()) return original;
+        if (mc.isSingleplayer()) return original;
+        if (!AntiCloutScreen.blockName) return original;
         for (Player player : mc.level.players()) {
 
             if (player == mc.player) {
                 continue;
             }
 
-            for (UUID uuid : AnticloutClient.uuids)
+            for (UUID uuid : AnticloutClient.uuids) {
                 if (uuid.equals(this.gameProfile.getId())) {
-                    if (player.position().closerThan(mc.player.position(), 30)) {
+                    if (player.position().closerThan(mc.player.position(), AntiCloutScreen.mapBlockDistance)) {
                         AnticloutClient.isChaserClose = true;
                         break;
                     }
-
                 }
-            AnticloutClient.isChaserClose = false;
+                AnticloutClient.isChaserClose = false;
+            }
         }
 
         for (UUID uuid : AnticloutClient.uuids)
             if (uuid.equals(this.gameProfile.getId()))
-                return Component.literal("lil pup");
+                return Component.literal(AntiCloutScreen.name);
 
         return original;
     }

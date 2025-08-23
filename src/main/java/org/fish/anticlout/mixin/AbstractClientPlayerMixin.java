@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.resources.PlayerSkin;
+import org.fish.anticlout.client.AntiCloutScreen;
 import org.fish.anticlout.client.AnticloutClient;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,17 +23,15 @@ public abstract class AbstractClientPlayerMixin {
     @Shadow @Nullable private PlayerInfo playerInfo;
 
     @ModifyReturnValue(method = "getSkin", at = @At("RETURN"))
-    public PlayerSkin getSkin(PlayerSkin original)
-    {
-        if (mc.isLocalServer()) return original;
+    public PlayerSkin getSkin(PlayerSkin original) {
+        if (mc.isSingleplayer()) return original;
+        if (!AntiCloutScreen.blockSkin) return original;
         PlayerInfo info = this.playerInfo;
         for (UUID uuid : AnticloutClient.uuids) {
             if (info == null) return original;
             if (uuid.equals(info.getProfile().getId()))
                 return new PlayerSkin(AnticloutClient.resources("textures/skin.png"), original.textureUrl(), original.capeTexture(), original.elytraTexture(), original.model(), original.secure());
         }
-
-
 
         return original;
     }
