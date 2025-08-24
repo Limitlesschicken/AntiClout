@@ -26,22 +26,7 @@ public class PlayerMixin {
     @ModifyReturnValue(method = "getName", at = @At("RETURN"))
     public Component getName(Component original) {
         if (mc.isSingleplayer()) return original;
-        for (Player player : mc.level.players()) {
 
-            if (player == mc.player) {
-                continue;
-            }
-
-            for (UUID uuid : AnticloutClient.uuids) {
-                if (uuid.equals(this.gameProfile.getId())) {
-                    if (player.position().closerThan(mc.player.position(), AntiCloutScreen.mapBlockDistance)) {
-                        AnticloutClient.isChaserClose = true;
-                        break;
-                    }
-                }
-                AnticloutClient.isChaserClose = false;
-            }
-        }
 
         if (!AntiCloutScreen.blockName) return original;
 

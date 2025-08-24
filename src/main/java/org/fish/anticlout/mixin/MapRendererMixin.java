@@ -26,10 +26,19 @@ public class MapRendererMixin {
         if (mc.isSingleplayer()) return;
         if (!AntiCloutScreen.blockMaps) return;
 
-        System.out.println(AnticloutClient.isChaserClose);
+        for (Player player : mc.level.players()) {
 
-        if (AnticloutClient.isChaserClose)
-            ci.cancel();
+            if (player == mc.player) {
+                continue;
+            }
 
+            for (UUID uuid : AnticloutClient.uuids) {
+                if (uuid.equals(player.getGameProfile().getId())) {
+                    if (player.position().closerThan(mc.player.position(), AntiCloutScreen.mapBlockDistance)) {
+                        ci.cancel();
+                    }
+                }
+            }
+        }
     }
 }
