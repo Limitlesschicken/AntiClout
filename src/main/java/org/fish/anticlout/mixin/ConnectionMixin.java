@@ -3,10 +3,12 @@ package org.fish.anticlout.mixin;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.LastSeenMessages;
 import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.network.chat.SignedMessageBody;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundPlayerChatPacket;
+import org.fish.anticlout.client.AntiCloutScreen;
 import org.fish.anticlout.client.AnticloutClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,7 +26,7 @@ public class ConnectionMixin {
         if (packet instanceof ClientboundPlayerChatPacket playerChatPacket) {
             //for (UUID uuid : AnticloutClient.uuids)
                 //if (uuid.equals(playerChatPacket.sender()))
-                    //ci.cancel();
+                    //playerChatPacket.
         }
     }
 }

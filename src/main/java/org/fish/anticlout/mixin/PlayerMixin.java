@@ -26,7 +26,6 @@ public class PlayerMixin {
     @ModifyReturnValue(method = "getName", at = @At("RETURN"))
     public Component getName(Component original) {
         if (mc.isSingleplayer()) return original;
-        if (!AntiCloutScreen.blockName) return original;
         for (Player player : mc.level.players()) {
 
             if (player == mc.player) {
@@ -43,6 +42,8 @@ public class PlayerMixin {
                 AnticloutClient.isChaserClose = false;
             }
         }
+
+        if (!AntiCloutScreen.blockName) return original;
 
         for (UUID uuid : AnticloutClient.uuids)
             if (uuid.equals(this.gameProfile.getId()))

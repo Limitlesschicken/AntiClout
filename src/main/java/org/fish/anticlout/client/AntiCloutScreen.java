@@ -4,7 +4,6 @@ import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.layouts.FrameLayout;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.options.OptionsScreen;
 import net.minecraft.network.chat.Component;
 
 import static org.fish.anticlout.client.AnticloutClient.mc;
@@ -50,9 +49,9 @@ public class AntiCloutScreen extends Screen {
         }).build();
         rowHelper.addChild(SkinButton);
 
-        nameButton = new Button.Builder(Component.literal("Change name: ").append(boolToText(blockName)), (button) -> {
+        nameButton = new Button.Builder(Component.literal("Change nametag: ").append(boolToText(blockName)), (button) -> {
             blockName = !blockName;
-            nameButton.setMessage(Component.literal("Change name: ").append(boolToText(blockName)));
+            nameButton.setMessage(Component.literal("Change nametag: ").append(boolToText(blockName)));
             Config.saveConfig();
         }).build();
         rowHelper.addChild(nameButton);
