@@ -54,8 +54,7 @@ public class Config {
         }
     }
 
-    public static void loadConfig()
-    {
+    public static void loadConfig() {
         Path configPath = FabricLoader.getInstance().getConfigDir();
         File uuidFile = configPath.resolve("AntiClout.json").toFile();
 

@@ -5,15 +5,9 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.layouts.FrameLayout;
 import net.minecraft.client.gui.layouts.GridLayout;
-import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import org.fish.anticlout.Anticlout;
 
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,8 +29,7 @@ public class AntiCloutPlayerScreen extends Screen {
         gridLayout.defaultCellSetting().padding(2);
         GridLayout.RowHelper rowHelper = gridLayout.createRowHelper(3);
 
-        for (int i = 0; i < AnticloutClient.uuids.size(); i++)
-        {
+        for (int i = 0; i < AnticloutClient.uuids.size(); i++) {
             UUID uuid = AnticloutClient.uuids.get(i);
 
             StringWidget uuidString = new StringWidget(0, 0, mc.font.width(uuid.toString()), mc.font.lineHeight, Component.literal(uuid.toString()), this.font).alignCenter();
@@ -66,8 +59,7 @@ public class AntiCloutPlayerScreen extends Screen {
     }
 
     @Override
-    public void onClose()
-    {
+    public void onClose() {
         mc.setScreen(new AntiCloutScreen(Component.literal("AntiClout")));
     }
 

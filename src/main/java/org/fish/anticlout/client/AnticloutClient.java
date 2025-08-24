@@ -61,7 +61,7 @@ public class AnticloutClient implements ClientModInitializer {
         mc = Minecraft.getInstance();
     }
 
-    public static void getUUIDS(){
+    public static void getUUIDS() {
         Path configPath = FabricLoader.getInstance().getConfigDir();
         File uuidFile = configPath.resolve("AntiCloutUUIDS.txt").toFile();
 
